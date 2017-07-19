@@ -20,11 +20,11 @@ public class HabitInfo extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // Create/open a database
-        String CREATE_TABLE_TRACKING_DIARY = "CREATE TABLE " + HabitGetter.HabitGet.Panel_name +
+        String CREATE_TABLE_TRACKING_DIARY = "CREATE TABLE " + HabitGetter.HabitGet.TABLE_NAME +
                 "(" + HabitGetter.HabitGet._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                HabitGetter.HabitGet.Date + " INTEGER NOT NULL," +
-                HabitGetter.HabitGet.HabitSection + " INTEGER NOT NULL," +
-                HabitGetter.HabitGet.SectionInfo + " STRING);";
+                HabitGetter.HabitGet.COLUMN_DATE + " INTEGER NOT NULL," +
+                HabitGetter.HabitGet.COLUMN_INFO + " INTEGER NOT NULL," +
+                HabitGetter.HabitGet.COLUMN_SECTION + " STRING);";
         Log.v("HabitInfo", "create table: " + CREATE_TABLE_TRACKING_DIARY);
         sqLiteDatabase.execSQL(CREATE_TABLE_TRACKING_DIARY);
     }
@@ -40,10 +40,10 @@ public class HabitInfo extends SQLiteOpenHelper {
         // Android's attributes are the values.
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(HabitGetter.HabitGet.Date, date);
-        values.put(HabitGetter.HabitGet.HabitSection, habit);
-        values.put(HabitGetter.HabitGet.SectionInfo, comment);
-        db.insert(HabitGetter.HabitGet.Panel_name, null, values);
+        values.put(HabitGetter.HabitGet.COLUMN_DATE, date);
+        values.put(HabitGetter.HabitGet.COLUMN_INFO, habit);
+        values.put(HabitGetter.HabitGet.COLUMN_SECTION, comment);
+        db.insert(HabitGetter.HabitGet.TABLE_NAME, null, values);
     }
 
     public Cursor readHabits() {
@@ -51,12 +51,12 @@ public class HabitInfo extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String[] projection = {
                 HabitGetter.HabitGet._ID,
-                HabitGetter.HabitGet.Date,
-                HabitGetter.HabitGet.HabitSection,
-                HabitGetter.HabitGet.SectionInfo
+                HabitGetter.HabitGet.COLUMN_DATE,
+                HabitGetter.HabitGet.COLUMN_INFO,
+                HabitGetter.HabitGet.COLUMN_SECTION
         };
         Cursor cursor = db.query(
-                HabitGetter.HabitGet.Panel_name,
+                HabitGetter.HabitGet.TABLE_NAME,
                 projection,
                 null, null, null, null, null);
         return cursor;
