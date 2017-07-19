@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         HabitInfo habitinfo = new HabitInfo(this);
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("DD/MM/YYYY");
+        SimpleDateFormat formatter = new SimpleDateFormat("YYYYMMDD");
         String dateString = formatter.format(date);
         int dateInt = Integer.parseInt(dateString);
 
